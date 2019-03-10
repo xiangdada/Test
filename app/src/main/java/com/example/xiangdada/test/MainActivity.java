@@ -1,8 +1,10 @@
 package com.example.xiangdada.test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.example.xiangdada.test.annotation.Annotation;
 import com.example.xiangdada.test.annotation.BindAddress;
@@ -23,12 +25,18 @@ import com.example.xiangdada.test.designpattern.proxy.ISubjectImp;
 import com.example.xiangdada.test.designpattern.proxy.ProxyFactory;
 import com.example.xiangdada.test.designpattern.proxy.ProxyHandle;
 import com.example.xiangdada.test.designpattern.proxy.TransactionProxy;
+import com.example.xiangdada.test.handler.HandlerActivity;
+import com.example.xiangdada.test.handler.ServiceActivity;
 import com.example.xiangdada.test.sort.Sort;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +50,23 @@ public class MainActivity extends AppCompatActivity {
         proxy();
         annotation();
         dagger2();
+
+    }
+
+    public void onHandlerClick(View view) {
+        startActivity(new Intent(MainActivity.this, HandlerActivity.class));
+    }
+
+    public void onStartServiceClick(View view) {
+        Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
+        intent.putExtra("method", "startService");
+        startActivity(intent);
+    }
+
+    public void onBindServiceClick(View view) {
+        Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
+        intent.putExtra("method", "bindService");
+        startActivity(intent);
     }
 
     /**
@@ -140,33 +165,33 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 排序方法测试
      */
-    private void sort(){
+    private void sort() {
         int[] bubble = Sort.bubble(getArrays());
-        Log.i("测试",getArraysString(bubble));
+        Log.i("测试", getArraysString(bubble));
 
         int[] selecte = Sort.bubble(getArrays());
-        Log.i("测试",getArraysString(selecte));
+        Log.i("测试", getArraysString(selecte));
 
         int[] insert = Sort.bubble(getArrays());
-        Log.i("测试",getArraysString(insert));
+        Log.i("测试", getArraysString(insert));
     }
 
-    private int[] getArrays(){
-        return new int[]{1,5,7,8,3,4,2,6,9,10};
+    private int[] getArrays() {
+        return new int[]{1, 5, 7, 8, 3, 4, 2, 6, 9, 10};
     }
 
-    private String getArraysString(int[] array){
+    private String getArraysString(int[] array) {
         StringBuilder sb = new StringBuilder();
-        for(int i=0;i<array.length;i++) {
+        for (int i = 0; i < array.length; i++) {
             sb.append(array[i]);
-            if(i!=array.length-1){
+            if (i != array.length - 1) {
                 sb.append(",");
             }
         }
         return sb.toString();
     }
 
-    private void dagger2(){
+    private void dagger2() {
         new Teacher().teacher();
 
         new Teacher2().teacher();
@@ -175,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
 
         new Qualifier(this).qualifier();
     }
-
 
 
 }
