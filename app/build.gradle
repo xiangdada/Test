@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+// 360开源插件化库RePlugin
+apply plugin: 'replugin-plugin-gradle'
 
 android {
     compileSdkVersion 28
@@ -16,6 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
@@ -29,4 +32,7 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.21'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
     implementation 'org.glassfish:javax.annotation:10.0-b28'
+
+    // 360开源插件化库RePlugin
+    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.3.1'
 }
