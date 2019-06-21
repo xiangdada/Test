@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 加入SDCARD的写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -28,10 +28,11 @@
         </activity>
 
         <activity android:name=".handler.HandlerActivity" />
-        <activity android:name=".handler.ServiceActivity"/>
+        <activity android:name=".handler.ServiceActivity" />
+        <activity android:name=".sliding.ScrollViewListViewActivity" />
 
 
-        <service android:name=".handler.MyIntentService"/>
+        <service android:name=".handler.MyIntentService" />
         <service android:name=".handler.MyService" />
 
     </application>

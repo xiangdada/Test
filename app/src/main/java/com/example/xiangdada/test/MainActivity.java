@@ -27,16 +27,13 @@ import com.example.xiangdada.test.designpattern.proxy.ProxyHandle;
 import com.example.xiangdada.test.designpattern.proxy.TransactionProxy;
 import com.example.xiangdada.test.handler.HandlerActivity;
 import com.example.xiangdada.test.handler.ServiceActivity;
+import com.example.xiangdada.test.sliding.ScrollViewListViewActivity;
 import com.example.xiangdada.test.sort.Sort;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
         intent.putExtra("method", "bindService");
         startActivity(intent);
+    }
+
+    public void onToSlidingActivityClick(View view) {
+        startActivity(new Intent(MainActivity.this, ScrollViewListViewActivity.class));
     }
 
     /**
